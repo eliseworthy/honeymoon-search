@@ -47,7 +47,7 @@ class HoneymoonItem < ActiveRecord::Base
   end
 
   def self.resize_image(url)
-    url_match = url.match /^.*\//
-    url_match[0] + "/190_q60.jpg"
+    url_match = url.match /(^.*)\//
+    "http://res.cloudinary.com/bookis/image/fetch/w_190,h_190,c_fill,g_face/#{url_match[1]}.jpg"
   end
 end
