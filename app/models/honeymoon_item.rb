@@ -19,7 +19,7 @@ class HoneymoonItem < ActiveRecord::Base
       if image.nil?
         break
       else
-        image_url = image[:src]
+        image_url = resize_image(image[:src])
       end
 
       header = item.at_css('h2')
@@ -44,5 +44,10 @@ class HoneymoonItem < ActiveRecord::Base
       )
     end
     HoneymoonItem.all.reverse
+  end
+
+  def self.resize_image(url)
+    url_match = url.match /^.*\//
+    url_match[0] + "/190_q60.jpg"
   end
 end
